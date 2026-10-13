@@ -40,23 +40,42 @@ class PackInternacional inherits PackDeViaje{
 
 }
 
-object coordinador{
+class Coordinador{
     var cantDeViajesRealizados = 0
     const aniosDeExperencia = 0 
-    var rol = "guia"  // o "Asistente logístico", o " Acompañante" | puede cambiar
+    var rol = Guia      // Guia // o Asistente logistico, o Acompañante | puede cambiar
 
-    method estaMotivado() {}
+    method cantViajesRealizados() = cantDeViajesRealizados
+
+    method estaMotivado() = true // or false
     method rol() = rol
     method cambiarRol(nuevoRol) {
         rol = nuevoRol
         } 
         //si no es uno de los 3 nombrados lanzar una EXCEPCION
-    method estaAltamenteCalificado(){
-        cantDeViajesRealizados == 20
-
-
-    }
+   
+   
+    /* method estaAltamenteCalificado(){
+        cantDeViajesRealizados > 20 /*
+        and
+       ( (self.rol() == Guia and self.estaMotivado() )
+        or
+        (self.rol() == AsistenteLogistico and self.aniosDeExperiencia >= 3)
+        or
+        (self.rol() == Acompañante) )
+    }*/
     
+}
+
+
+class Guia inherits Coordinador{ 
+}
+
+class Asistentelogistico inherits Coordinador{
+}
+
+class Acompañante inherits Coordinador{
+
 }
 
 object beneficiosEspeciales{
