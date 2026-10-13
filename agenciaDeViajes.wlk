@@ -2,7 +2,7 @@
 class PackDeViaje {
     const duracionDias 
     const precioBase
-    const beneficioEspecial // "Traslados privados" // "Acceso a salas VIP" //"Seguros adicionales"
+    const beneficioEspecial  = []// "Traslados privados" // "Acceso a salas VIP" //"Seguros adicionales"
     const coordinador 
 
     const destino
