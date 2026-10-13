@@ -32,10 +32,13 @@ class PackNacional inherits PackDeViaje {
 
 class PackInternacional inherits PackDeViaje{
     // desstino = pais
-    var cantEscala 
+    var cantEscalas = 0
 
     method esDeInteres(pais) = true // or false
     //coordinador
+
+    method escalas() = cantEscalas
+    
 
 
 }
@@ -43,7 +46,7 @@ class PackInternacional inherits PackDeViaje{
 class Coordinador{
     var cantDeViajesRealizados = 0
     const aniosDeExperencia = 0 
-    var rol = Guia      // Guia // o Asistente logistico, o Acompañante | puede cambiar
+    var rol = Guia      // o "Asistente logistico" o "Acompañante"
 
     method cantViajesRealizados() = cantDeViajesRealizados
 
@@ -53,17 +56,15 @@ class Coordinador{
         rol = nuevoRol
         } 
         //si no es uno de los 3 nombrados lanzar una EXCEPCION
-   
-   
-    /* method estaAltamenteCalificado(){
-        cantDeViajesRealizados > 20 /*
-        and
-       ( (self.rol() == Guia and self.estaMotivado() )
+    method estaAltamenteCalificado() =
+        cantDeViajesRealizados > 20 and
+        (
+        (self.rol() == Guia and self.estaMotivado()) 
         or
-        (self.rol() == AsistenteLogistico and self.aniosDeExperiencia >= 3)
+        (self.rol() == AsistenteLogistico and aniosDeExperencia >= 3)
         or
-        (self.rol() == Acompañante) )
-    }*/
+        self.rol() == Acompañante
+        )
     
 }
 
