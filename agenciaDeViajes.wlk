@@ -12,6 +12,8 @@ class PackDeViaje {
     method destino() = destino
     method precioBase() = precioBase
     method beneficioEspecial() = beneficioEspecial
+    method agregarBeneficio(unBeneficio) = beneficioEspecial.add(unBeneficio)
+    method quitarBeneficio(unBeneficio) = beneficioEspecial.remove(unBeneficio)
 
     method esPremium() {}
 
@@ -41,15 +43,19 @@ class PackInternacional inherits PackDeViaje{
 object coordinador{
     var cantDeViajesRealizados = 0
     const aniosDeExperencia = 0 
-    var rol = "guia"  // o asistn log, o acomp | puede cambiar
+    var rol = "guia"  // o "Asistente logístico", o " Acompañante" | puede cambiar
 
-    method estaMotivado() = true //or false  
-    
+    method estaMotivado() {}
+    method rol() = rol
     method cambiarRol(nuevoRol) {
         rol = nuevoRol
         } 
         //si no es uno de los 3 nombrados lanzar una EXCEPCION
+    method estaAltamenteCalificado(){
+        cantDeViajesRealizados == 20
 
+
+    }
     
 }
 
