@@ -11,13 +11,16 @@ class PackDeViaje {
     method coordinador() = coordinador
     method destino() = destino
     method precioBase() = precioBase
-    method beneficioEspecial() = beneficioEspecial
-    method agregarBeneficio(unBeneficio) = beneficioEspecial.add(unBeneficio)
-    method quitarBeneficio(unBeneficio) = beneficioEspecial.remove(unBeneficio)
+    method beneficioVigente() = beneficioEspecial.filter({b=>b.estaVigente()})
+    //method agregarBeneficio(unBeneficio) = beneficioEspecial.add(unBeneficio)
+    //method quitarBeneficio(unBeneficio) = beneficioEspecial.remove(unBeneficio)
 
     method esPremium() {}
 
-    method valorFinal() {}
+    method valorFinal() {
+        precioBase + self.beneficioVigente().sum({ b => b.costo() })
+
+    }
 
 }
 
@@ -33,15 +36,19 @@ class PackNacional inherits PackDeViaje {
 class PackInternacional inherits PackDeViaje{
     // desstino = pais
     var cantEscalas = 0
+    var esDeInteres = true // or false
 
-    method esDeInteres(pais) = true // or false
+    method esDeInteres(pais) = esDeInteres
     //coordinador
 
     method escalas() = cantEscalas
-    
 
+    override method valorFinal() = super() * 1.20
 
+    override method esPremium() =  esDeInteres and duracionDias > 20 and cantEscalas == 0
 }
+
+
 
 class Coordinador{
     var cantDeViajesRealizados = 0
@@ -61,7 +68,7 @@ class Coordinador{
         (
         (self.rol() == Guia and self.estaMotivado()) 
         or
-        (self.rol() == AsistenteLogistico and aniosDeExperencia >= 3)
+        (self.rol() == Asistentelogistico and aniosDeExperencia >= 3)
         or
         self.rol() == Acompañante
         )
@@ -81,15 +88,15 @@ class Acompañante inherits Coordinador{
 
 object beneficiosEspeciales{
     var tipo  = "Traslados privados" // "Acceso a salas VIP" //"Seguros adicionales"
-    var costo = 0
+    var costo 
+    const vigente
     method costo () = costo
-    method estaVigente() = true // or false
+    method estaVigente() = vigente
 
 }
 
-
 class PackProvincial inherits PackNacional{
-    override method esPremium(){}
+    override method esPremium(){ }
 
-    override method precioBase(){}
+    
 }
